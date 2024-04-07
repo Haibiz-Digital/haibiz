@@ -14,7 +14,8 @@
   <!-- Canonical Tag -->
   <link rel="canonical" href="https://www.haibizdigital.com/">
 
-  <title>HAIBIZ DIGITAL | Web Design, Development, Marketing, AI Solutions</title>  <link rel="icon" type="image/png" href="./assets/img/haibiz_logos/favicon-32x32.png">
+  <title>HAIBIZ DIGITAL | Web Design, Development, Marketing, AI Solutions</title>
+  <link rel="icon" type="image/png" href="./assets/img/haibiz_logos/favicon-32x32.png">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -25,7 +26,8 @@
       "sameAs": [
         "https://www.facebook.com/haibizdigital/",
         "https://twitter.com/haibizdigital/",
-        "https://www.linkedin.com/company/haibizdigital/"
+        "https://www.linkedin.com/company/haibizdigital/",
+        "https://www.instagram.com/haibiz_digital?igsh=MTJ4ZTkxdzZzODJ6aQ=="
       ]
     }
   </script>
@@ -115,6 +117,12 @@
     .feature-cont {
       margin: 1%;
     }
+  }
+
+  #result{
+    color: #2fc52f;
+    font-weight: 600;
+    font-size: 20px;
   }
 </style>
 
@@ -378,7 +386,7 @@
               </li> --> <br>
               <li>
                 <div class="icon"><span class="mai-mail"></span></div>
-                <div class="content"><a href="#">contact@haibizdigital.com</a></div>
+                <div class="content"><a href="#">haibizdigital@gmail.com</a></div>
               </li> <br>
               <li>
                 <div class="icon"><span class="mai-phone-portrait"></span></div>
@@ -391,17 +399,20 @@
             <h2 class="title-section">Drop Us a Line</h2>
             <div class="divider"></div>
 
-            <form action="#">
+            <form method="post" id="form">
+              <input type="hidden" name="access_key" value="2062d12b-9427-4047-9fbe-4900ef79919c">
               <div class="py-2">
-                <input type="text" class="form-control" placeholder="Full name">
+                <input type="text" name="name" class="form-control" placeholder="Full name">
               </div>
               <div class="py-2">
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text" name="email" class="form-control" placeholder="Email">
               </div>
               <div class="py-2">
-                <textarea rows="6" class="form-control" placeholder="Enter message"></textarea>
+                <textarea rows="6" name="message" class="form-control" placeholder="Enter message"></textarea>
               </div>
               <button type="submit" class="btn btn-primary rounded-pill mt-4">Send Message</button>
+              <br><br>
+              <div id="result"></div>
             </form>
           </div>
         </div>
@@ -418,8 +429,8 @@
           <h3>HAIBIZ<span class="text-primary">DIGITAL</span></h3>
           <p>Your partner for digital innovation</p>
 
-          <p><a href="#">contact@haibizdigital.com</a></p>
-          <p><a href="#">+91 90374 57306</a></p>
+          <p><a href="mailto:contact@haibizdigital.com">contact@haibizdigital.com</a></p>
+          <p><a href="tel:+91 90374 57306">+91 90374 57306</a></p>
         </div>
         <div class="col-lg-3 py-3">
           <h5>Quick Links</h5>
@@ -448,10 +459,11 @@
           </form> -->
 
           <div class="sosmed-button mt-4">
-            <a href="#"><span class="mai-logo-facebook-f"></span></a>
+            <!-- <a href="#"><span class="mai-logo-facebook-f"></span></a>
             <a href="#"><span class="mai-logo-twitter"></span></a>
-            <a href="#"><span class="mai-logo-google"></span></a>
-            <a href="#"><span class="mai-logo-linkedin"></span></a>
+            <a href="#"><span class="mai-logo-google"></span></a> -->
+            <a href="https://www.linkedin.com/company/haibiz-digital/"><span class="mai-logo-linkedin"></span></a>
+            <a href="https://www.instagram.com/haibiz_digital?igsh=MTJ4ZTkxdzZzODJ6aQ=="><span class="mai-logo-instagram"></span></a>
           </div>
         </div>
       </div>
@@ -466,7 +478,49 @@
     </div> <!-- .container -->
   </footer> <!-- .page-footer -->
 
+  <script src="https://web3forms.com/client/script.js" async defer></script>
 
+
+  <script>
+    const form = document.getElementById('form');
+    const result = document.getElementById('result');
+  
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+      result.innerHTML = "Please wait..."
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            result.innerHTML = "Form submitted successfully ! ✅";
+          } else {
+            console.log(response);
+            result.innerHTML = json.message;
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          result.innerHTML = "Something went wrong!";
+        })
+        .then(function () {
+          form.reset();
+          setTimeout(() => {
+            result.innerHTML = ""
+          }, 3000);
+        });
+    });
+  </script>
   <script src="./assets/js/jquery-3.5.1.min.js"></script>
 
   <script src="./assets/js/bootstrap.bundle.min.js"></script>
