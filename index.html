@@ -42,7 +42,7 @@
 
   <link rel="stylesheet" href="./assets/css/theme.css">
 
-  
+
 
 </head>
 
@@ -137,7 +137,7 @@
     margin-bottom: 2px;
   }
 
-  .blog-cont {
+  .blog-cont a {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -164,14 +164,14 @@
     border: 3px solid #9584ffa3
   }
 
- 
+
 
   .image-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     /* Scales image to fill container */
-   
+
   }
 
   .blog-card-title {
@@ -195,25 +195,26 @@
     text-align: justify;
   }
 
-  .blog-card-title p{
+  .blog-card-title p {
     font-size: 13px;
     margin: 0px;
     text-align: right;
     color: white;
-    
+
   }
 
-  .blog-wrapper h2,.blog-wrapper .divider{
+  .blog-wrapper h2,
+  .blog-wrapper .divider {
     margin-left: 5%;
   }
 
   @media (max-width:600px) {
-    .image-card{
+    .image-card {
       width: 90%;
       height: 250px;
     }
 
-    .blog-card-title p{
+    .blog-card-title p {
       font-size: 10px;
       font-weight: bolder;
     }
@@ -224,7 +225,7 @@
 
     }
 
-  
+
 
   }
 </style>
@@ -405,72 +406,26 @@
     </div> <!-- .page-section -->
 
 
-   
+
 
     <div class="blog-wrapper">
       <h2 class="title-section"><span style="color: #6C55F9;;">Our Blogs</span></h2>
       <div class="divider"></div>
-      <div class="blog-cont">
+      <div class="blog-cont" id="blog-cont">
 
-        <div class="image-card">
-          <img src="https://cdn-images-1.medium.com/v2/resize:fit:1024/1*_xxBDSpEDInQ78RqjvyA0g.png"
-            alt="Image description">
-          <div class="blog-card-title">
-            <p>Jun 8 2024</p>
-            <h2>Welcome to Haibiz Digital Lorem ipsum dolor sit amet consectetur.</h2>
-          </div>
-        </div>
-
-        <div class="image-card">
-          <img src="https://cdn-images-1.medium.com/v2/resize:fit:1024/1*_xxBDSpEDInQ78RqjvyA0g.png"
-            alt="Image description">
-          <div class="blog-card-title">
-            <p>Jun 8 2024</p>
-            <h2>Welcome to Haibiz Digital</h2>
-          </div>
-        </div>
-
-        <div class="image-card">
-          <img src="https://cdn-images-1.medium.com/v2/resize:fit:1024/1*_xxBDSpEDInQ78RqjvyA0g.png"
-            alt="Image description">
-          <div class="blog-card-title">
-            <p>Jun 8 2024</p>
-            <h2>Welcome to Haibiz Digital</h2>
-          </div>
-        </div>
-
-        <div class="image-card">
-          <img src="https://cdn-images-1.medium.com/v2/resize:fit:1024/1*_xxBDSpEDInQ78RqjvyA0g.png"
-            alt="Image description">
-          <div class="blog-card-title">
-            <p>Jun 8 2024</p>
-            <h2>Welcome to Haibiz Digital</h2>
-          </div>
-        </div>
-
-        <div class="image-card">
-          <img src="https://cdn-images-1.medium.com/v2/resize:fit:1024/1*_xxBDSpEDInQ78RqjvyA0g.png"
-            alt="Image description">
-          <div class="blog-card-title">
-            <p>Jun 8 2024</p>
-            <h2>Welcome to Haibiz Digital</h2>
-          </div>
-        </div>
-
-        <div class="image-card">
-          <img src="https://cdn-images-1.medium.com/v2/resize:fit:1024/1*_xxBDSpEDInQ78RqjvyA0g.png"
-            alt="Image description">
-          <div class="blog-card-title">
-            <p>Jun 8 2024</p>
-            <h2>Welcome to Haibiz Digital</h2>
-          </div>
-        </div>
+     <!-- blog content comes here -->
 
       </div>
 
+      <a href="https://medium.com/@haibizdigital" class="btn btn-primary" style="margin-left: 5%;">Read more
+
+        <img src="./assets/img/read-more.png" alt="" style="width: 20px;">
+      </a>
+      
+
     </div>
- 
-    
+
+
 
     <div class="page-section counter-section">
       <div class="container">
@@ -704,6 +659,50 @@
           }, 3000);
         });
     });
+
+    function formatDate(milliseconds) {
+      const date = new Date(milliseconds);
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+
+    async function getBlogs() {
+      const blogContent = await (await fetch("https://v1.nocodeapi.com/haibizdigital/medium/weQGTuzTnQlKXNUR")).json()
+      //console.log(blogContent[0].content)
+
+
+      const blogContainer = document.getElementById('blog-cont')
+      blogContent.map((value, index) => {
+        const content = value.content
+        const regex = /<img.*?src=["'](.*?)["']/;
+        const match = content.match(regex);
+        
+        if (match && match.length > 1) {
+          var imageUrl = match[1];
+          //console.log(imageUrl); // Output the URL of the first image
+        } else {
+          console.log('No image found in the content.');
+        }
+
+        const readableDate = formatDate(value.published);
+        blogContainer.innerHTML += `  <a href=${value.link} target="_blank">
+          <div class="image-card">
+            <img src="${imageUrl}"
+              alt="blog">
+            <div class="blog-card-title">
+              <p>${readableDate}</p>
+              <h2>${value.title}</h2>
+            </div>
+          </div>  
+        </a>`
+      })
+
+
+    }
+
+    getBlogs() 
+   
+
   </script>
   <script src="./assets/js/jquery-3.5.1.min.js"></script>
 
