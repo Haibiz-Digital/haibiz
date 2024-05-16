@@ -42,6 +42,8 @@
 
   <link rel="stylesheet" href="./assets/css/theme.css">
 
+
+
 </head>
 
 <style>
@@ -125,14 +127,106 @@
     font-size: 20px;
   }
 
-  .logo-cont{
+  .logo-cont {
     display: flex;
     align-items: center;
   }
 
-  .haibiz-logo{
+  .haibiz-logo {
     width: 50px;
     margin-bottom: 2px;
+  }
+
+  .blog-cont a {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+
+  }
+
+  .image-card {
+    position: relative;
+    width: 400px;
+    /* Adjust width as needed */
+    height: 250px;
+    /* Adjust height as needed */
+    margin-bottom: 40px;
+
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+    border: 3px solid #9584ffa3
+  }
+
+
+
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Scales image to fill container */
+
+  }
+
+  .blog-card-title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+    /* Black gradient */
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+  }
+
+  .blog-card-title h2 {
+    margin: 0;
+    font-size: 16px;
+    /* Adjust font size as needed */
+    text-align: justify;
+  }
+
+  .blog-card-title p {
+    font-size: 13px;
+    margin: 0px;
+    text-align: right;
+    color: white;
+
+  }
+
+  .blog-wrapper h2,
+  .blog-wrapper .divider {
+    margin-left: 5%;
+  }
+
+  @media (max-width:600px) {
+    .image-card {
+      width: 90%;
+      height: 250px;
+    }
+
+    .blog-card-title p {
+      font-size: 10px;
+      font-weight: bolder;
+    }
+
+    .blog-card-title h2 {
+      margin: 0;
+      font-size: 14px;
+
+    }
+
+
+
   }
 </style>
 
@@ -145,7 +239,7 @@
     <nav class="navbar navbar-expand-lg navbar-light navbar-float">
       <div class="container">
         <div class="logo-cont">
-          <img src="./assets/img/haibiz_logos/logo_updated.png" alt=""  class="haibiz-logo">
+          <img src="./assets/img/haibiz_logos/logo_updated.png" alt="" class="haibiz-logo">
           <a href="index.html" class="navbar-brand">HAIBIZ<span class="text-primary">DIGITAL</span></a>
         </div>
 
@@ -202,86 +296,86 @@
   <main>
     <div class="page-section features" id="services">
       <div class="container" style="max-width: fit-content;">
-    
-      <div class="row justify-content-center feature-cont">
-        <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
-          <div class="d-flex flex-row">
-            <div class="img-fluid mr-3">
-              <img src="./assets/img/web design.png" alt="" style="width: 70px;height: 70px;">
+
+        <div class="row justify-content-center feature-cont">
+          <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
+            <div class="d-flex flex-row">
+              <div class="img-fluid mr-3">
+                <img src="./assets/img/web design.png" alt="" style="width: 70px;height: 70px;">
+              </div>
+              <div>
+                <h5>Web Design</h5>
+                <p style="line-height: 16px;text-align: justify;">We are an experienced web page design, Developing and
+                  hosting company that
+                  provide professional design of web page services to suit your requirements.The different areas of web
+                  design include graphic website design,attractive responsive website designs,cool website layouts.</p>
+              </div>
             </div>
-            <div>
-              <h5>Web Design</h5>
-              <p style="line-height: 16px;text-align: justify;">We are an experienced web page design, Developing and
-                hosting company that
-                provide professional design of web page services to suit your requirements.The different areas of web
-                design include graphic website design,attractive responsive website designs,cool website layouts.</p>
+          </div>
+
+          <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
+            <div class="d-flex flex-row">
+              <div class="img-fluid mr-3">
+                <img src="./assets/img/web development.png" alt="" style="width: 70px;height: 70px;">
+              </div>
+              <div>
+                <h5>Web Development</h5>
+                <p style="line-height: 16px;text-align: justify;">We design and develop different types of great
+                  websites including Static,E-commerce,dynamic ,customized and content management system etc.We have a
+                  great knowledge of the best website creating, latest trends in design of web page & No compromise on
+                  quality of design the website.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
+            <div class="d-flex flex-row">
+              <div class="img-fluid mr-3">
+                <img src="./assets/img/digital_marketing.png" alt="" style="width: 70px;height: 70px;">
+              </div>
+              <div>
+                <h5>Social Media Marketing</h5>
+                <p style="line-height: 16px;text-align: justify;">Our Social media strategy focuses on recognizing where
+                  and which people follow your business, how you should approach them, thereby expanding your brand
+                  awareness. By leveraging data-driven insights and engaging content, we aim to foster meaningful
+                  connections with your target audience, driving increased engagement and conversion rates.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
+            <div class="d-flex flex-row">
+              <div class="img-fluid mr-3">
+                <img src="./assets/img/artificial-intelligence.png" alt="" style="width: 70px;height: 70px;">
+              </div>
+              <div>
+                <h5>Generative AI Applications</h5>
+                <p style="line-height: 16px;text-align: justify;">Unlock the transformative power of AI with our
+                  tailored generative AI development services. From consulting to crafting robust solutions seamlessly
+                  integrated with powerful foundational models like GPT-4, Llama, and PaLM-2, we aim to lead the
+                  forefront of AI technology, pioneering new possibilities in the world of artificial intelligence.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
+            <div class="d-flex flex-row">
+              <div class="img-fluid mr-3">
+                <img src="./assets/img/web_and_app.png" alt="" style="width: 70px;height: 70px;">
+              </div>
+              <div>
+                <h5>Mobile Application Development</h5>
+                <p style="line-height: 16px;text-align: justify;">Mobile User Interface (UI) Design is also an essential
+                  in the creation of mobile apps. Mobile UI considers constraints & contexts, screen, input and mobility
+                  as outlines for design.This web delopment is used to denote the act or process for Mobile Application
+                  Development, best web design studios .</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
-          <div class="d-flex flex-row">
-            <div class="img-fluid mr-3">
-              <img src="./assets/img/web development.png" alt="" style="width: 70px;height: 70px;">
-            </div>
-            <div>
-              <h5>Web Development</h5>
-              <p style="line-height: 16px;text-align: justify;">We design and develop different types of great
-                websites including Static,E-commerce,dynamic ,customized and content management system etc.We have a
-                great knowledge of the best website creating, latest trends in design of web page & No compromise on
-                quality of design the website.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
-          <div class="d-flex flex-row">
-            <div class="img-fluid mr-3">
-              <img src="./assets/img/digital_marketing.png" alt="" style="width: 70px;height: 70px;">
-            </div>
-            <div>
-              <h5>Social Media Marketing</h5>
-              <p style="line-height: 16px;text-align: justify;">Our Social media strategy focuses on recognizing where
-                and which people follow your business, how you should approach them, thereby expanding your brand
-                awareness. By leveraging data-driven insights and engaging content, we aim to foster meaningful
-                connections with your target audience, driving increased engagement and conversion rates.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
-          <div class="d-flex flex-row">
-            <div class="img-fluid mr-3">
-              <img src="./assets/img/artificial-intelligence.png" alt="" style="width: 70px;height: 70px;">
-            </div>
-            <div>
-              <h5>Generative AI Applications</h5>
-              <p style="line-height: 16px;text-align: justify;">Unlock the transformative power of AI with our
-                tailored generative AI development services. From consulting to crafting robust solutions seamlessly
-                integrated with powerful foundational models like GPT-4, Llama, and PaLM-2, we aim to lead the
-                forefront of AI technology, pioneering new possibilities in the world of artificial intelligence.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 py-3 wow fadeInUp threefeat">
-          <div class="d-flex flex-row">
-            <div class="img-fluid mr-3">
-              <img src="./assets/img/web_and_app.png" alt="" style="width: 70px;height: 70px;">
-            </div>
-            <div>
-              <h5>Mobile Application Development</h5>
-              <p style="line-height: 16px;text-align: justify;">Mobile User Interface (UI) Design is also an essential
-                in the creation of mobile apps. Mobile UI considers constraints & contexts, screen, input and mobility
-                as outlines for design.This web delopment is used to denote the act or process for Mobile Application
-                Development, best web design studios .</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    
       </div> <!-- .container -->
     </div> <!-- .page-section -->
 
@@ -310,6 +404,28 @@
         </div>
       </div> <!-- .container -->
     </div> <!-- .page-section -->
+
+
+
+
+    <div class="blog-wrapper">
+      <h2 class="title-section"><span style="color: #6C55F9;;">Our Blogs</span></h2>
+      <div class="divider"></div>
+      <div class="blog-cont" id="blog-cont">
+
+     <!-- blog content comes here -->
+
+      </div>
+
+      <a href="https://medium.com/@haibizdigital" class="btn btn-primary" style="margin-left: 5%;">Read more
+
+        <img src="./assets/img/read-more.png" alt="" style="width: 20px;">
+      </a>
+      
+
+    </div>
+
+
 
     <div class="page-section counter-section">
       <div class="container">
@@ -444,7 +560,7 @@
       <div class="row  mb-5" style="justify-content: space-around;">
         <div class="col-lg-3 py-3">
           <div class="logo-cont">
-            <img src="./assets/img/haibiz_logos/logo_updated.png" alt=""  class="haibiz-logo">
+            <img src="./assets/img/haibiz_logos/logo_updated.png" alt="" class="haibiz-logo">
             <a href="index.html" class="navbar-brand">HAIBIZ<span class="text-primary">DIGITAL</span></a>
           </div>
           <p>Your partner for digital innovation</p>
@@ -483,7 +599,8 @@
               <a href="#"><span class="mai-logo-google"></span></a> -->
             <a href="https://twitter.com/haibizdigital/"><span class="mai-logo-twitter"></span></a>&nbsp;&nbsp;
             <a href="https://www.facebook.com/haibizdigital/"><span class="mai-logo-facebook"></span></a> &nbsp;&nbsp;
-            <a href="https://www.linkedin.com/company/haibiz-digital/"><span class="mai-logo-linkedin"></span></a>&nbsp;&nbsp;
+            <a href="https://www.linkedin.com/company/haibiz-digital/"><span
+                class="mai-logo-linkedin"></span></a>&nbsp;&nbsp;
             <a href="https://www.instagram.com/haibiz_digital?igsh=MTJ4ZTkxdzZzODJ6aQ=="><span
                 class="mai-logo-instagram"></span></a>
           </div>
@@ -542,6 +659,50 @@
           }, 3000);
         });
     });
+
+    function formatDate(milliseconds) {
+      const date = new Date(milliseconds);
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+
+    async function getBlogs() {
+      const blogContent = await (await fetch("https://v1.nocodeapi.com/haibizdigital/medium/weQGTuzTnQlKXNUR")).json()
+      //console.log(blogContent[0].content)
+
+
+      const blogContainer = document.getElementById('blog-cont')
+      blogContent.map((value, index) => {
+        const content = value.content
+        const regex = /<img.*?src=["'](.*?)["']/;
+        const match = content.match(regex);
+        
+        if (match && match.length > 1) {
+          var imageUrl = match[1];
+          //console.log(imageUrl); // Output the URL of the first image
+        } else {
+          console.log('No image found in the content.');
+        }
+
+        const readableDate = formatDate(value.published);
+        blogContainer.innerHTML += `  <a href=${value.link} target="_blank">
+          <div class="image-card">
+            <img src="${imageUrl}"
+              alt="blog">
+            <div class="blog-card-title">
+              <p>${readableDate}</p>
+              <h2>${value.title}</h2>
+            </div>
+          </div>  
+        </a>`
+      })
+
+
+    }
+
+    getBlogs() 
+   
+
   </script>
   <script src="./assets/js/jquery-3.5.1.min.js"></script>
 
