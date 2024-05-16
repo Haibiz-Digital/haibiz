@@ -137,13 +137,15 @@
     margin-bottom: 2px;
   }
 
-  .blog-cont a {
+  .blog-cont {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+  }
 
-
+  .blog-cont a {
+    width: fit-content;
   }
 
   .image-card {
@@ -209,8 +211,12 @@
   }
 
   @media (max-width:600px) {
-    .image-card {
+
+    .blog-cont a{
       width: 90%;
+    }
+    .image-card {
+      width: 100%;
       height: 250px;
     }
 
@@ -255,6 +261,9 @@
             </li>
             <li class="nav-item">
               <a href="#services" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item">
+              <a href="#blogs-section" class="nav-link">Blogs</a>
             </li>
             <li class="nav-item">
               <a href="#about" class="nav-link">About</a>
@@ -408,20 +417,21 @@
 
 
 
-    <div class="blog-wrapper">
+    <div class="blog-wrapper" id="blogs-section">
       <h2 class="title-section"><span style="color: #6C55F9;;">Our Blogs</span></h2>
       <div class="divider"></div>
       <div class="blog-cont" id="blog-cont">
 
-     <!-- blog content comes here -->
+        <!-- blog content comes here -->
 
       </div>
 
-      <a href="https://medium.com/@haibizdigital" class="btn btn-primary" style="margin-left: 5%;" target="_blank">Read more
+      <a href="https://medium.com/@haibizdigital" class="btn btn-primary" style="margin-left: 5%;" target="_blank">Read
+        more
 
         <img src="./assets/img/read-more.png" alt="" style="width: 20px;">
       </a>
-      
+
 
     </div>
 
@@ -676,7 +686,7 @@
         const content = value.content
         const regex = /<img.*?src=["'](.*?)["']/;
         const match = content.match(regex);
-        
+
         if (match && match.length > 1) {
           var imageUrl = match[1];
           //console.log(imageUrl); // Output the URL of the first image
@@ -700,8 +710,9 @@
 
     }
 
-    getBlogs() 
+    getBlogs()
    
+
 
   </script>
   <script src="./assets/js/jquery-3.5.1.min.js"></script>
