@@ -24,7 +24,7 @@
       "url": "https://www.haibizdigital.com/",
       "logo": "https://www.haibizdigital.com/assets/img/haibiz_logos/logo_title.png",
       "sameAs": [
-        "https://www.facebook.com/haibizdigital/",
+        "https://www.facebook.com/profile.php?id=61558148109824",
         "https://twitter.com/haibizdigital/",
         "https://www.linkedin.com/company/haibizdigital/",
         "https://www.instagram.com/haibiz_digital?igsh=MTJ4ZTkxdzZzODJ6aQ=="
@@ -212,9 +212,10 @@
 
   @media (max-width:600px) {
 
-    .blog-cont a{
+    .blog-cont a {
       width: 90%;
     }
+
     .image-card {
       width: 100%;
       height: 250px;
@@ -417,8 +418,8 @@
 
 
 
-    <div class="blog-wrapper" id="blogs-section">
-      <h2 class="title-section"><span style="color: #6C55F9;;">Our Blogs</span></h2>
+    <div class="blog-wrapper wow fadeInUp" id="blogs-section">
+      <h2 class="title-section">Our<span style="color: #6C55F9;;"> Blogs</span></h2>
       <div class="divider"></div>
       <div class="blog-cont" id="blog-cont">
 
@@ -576,7 +577,7 @@
           <p>Your partner for digital innovation</p>
 
           <p><a href="mailto:haibizdigital@gmail.com">haibizdigital@gmail.com</a></p>
-          <p><a href="tel:+91 90374 57306">+91 90374 57306</a></p>
+          <p><a href="tel:+919061397306">+919061397306</a></p>
         </div>
         <div class="col-lg-3 py-3">
           <h5>Quick Links</h5>
@@ -608,7 +609,7 @@
             <!-- <a href="#"><span class="mai-logo-facebook-f"></span></a>
               <a href="#"><span class="mai-logo-google"></span></a> -->
             <a href="https://twitter.com/haibizdigital/"><span class="mai-logo-twitter"></span></a>&nbsp;&nbsp;
-            <a href="https://www.facebook.com/haibizdigital/"><span class="mai-logo-facebook"></span></a> &nbsp;&nbsp;
+            <a href="https://www.facebook.com/profile.php?id=61558148109824"><span class="mai-logo-facebook"></span></a> &nbsp;&nbsp;
             <a href="https://www.linkedin.com/company/haibiz-digital/"><span
                 class="mai-logo-linkedin"></span></a>&nbsp;&nbsp;
             <a href="https://www.instagram.com/haibiz_digital?igsh=MTJ4ZTkxdzZzODJ6aQ=="><span
@@ -672,29 +673,34 @@
 
     function formatDate(milliseconds) {
       const date = new Date(milliseconds);
-      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return date.toLocaleDateString('en-US', options);
     }
 
+    function extractImageUrl(description) {
+      // Regular expression to match the src attribute of the img tag
+      const imgTagRegex = /<img[^>]*src="([^"]*)"[^>]*>/;
+      const match = description.match(imgTagRegex);
+      if (match && match[1]) {
+        return match[1];
+      }
+      return null;
+    }
+
     async function getBlogs() {
-      const blogContent = await (await fetch("https://v1.nocodeapi.com/haibizdigital/medium/weQGTuzTnQlKXNUR")).json()
-      //console.log(blogContent[0].content)
+      const blogContent = (await (await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@haibizdigital")).json()).items
+
 
 
       const blogContainer = document.getElementById('blog-cont')
       blogContent.map((value, index) => {
-        const content = value.content
-        const regex = /<img.*?src=["'](.*?)["']/;
-        const match = content.match(regex);
 
-        if (match && match.length > 1) {
-          var imageUrl = match[1];
-          //console.log(imageUrl); // Output the URL of the first image
-        } else {
-          console.log('No image found in the content.');
-        }
 
-        const readableDate = formatDate(value.published);
+        //console.log(value)
+        let dateString = value.pubDate;
+        let date = new Date(dateString).getTime();
+        readableDate = formatDate(date)
+        let imageUrl = extractImageUrl(value.description)
         blogContainer.innerHTML += `  <a href=${value.link} target="_blank">
           <div class="image-card">
             <img src="${imageUrl}"
@@ -711,7 +717,7 @@
     }
 
     getBlogs()
-   
+
 
 
   </script>
