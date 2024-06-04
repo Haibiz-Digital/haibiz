@@ -537,7 +537,7 @@
               <input type="hidden" name="access_key" value="2062d12b-9427-4047-9fbe-4900ef79919c">
               <div class="py-2">
                 <input type="text" name="name" class="form-control" placeholder="Full name" 
-                data-parsley-length="[3,50]">
+                data-parsley-name>
 
               </div>
               <div class="py-2">
@@ -627,7 +627,7 @@
     </div> <!-- .container -->
   </footer> <!-- .page-footer -->
 
-  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://parsleyjs.org/dist/parsley.min.js"></script>
   <script>
     $('#form').parsley();
@@ -652,8 +652,21 @@
       }
     });
 
+    window.Parsley.addValidator('name', {
+      validateString: function(value) {
+        var nameRegex = /^[a-zA-Z\s'-]{3,50}$/;
+        return nameRegex.test(value);
+      },
+      messages: {
+        en: 'Please enter a valid name',
+      }
+    });
+
     
-  </script> -->
+
+
+    
+  </script>
 
 
   <script src="./assets/js/contactForm.js"></script>

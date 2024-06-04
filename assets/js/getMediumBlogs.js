@@ -16,7 +16,11 @@ function extractImageUrl(description) {
 
 async function getBlogs() {
     const blogContent = (await (await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@haibizdigital")).json()).items
+    //console.log(blogContent)
 
+    if(blogContent.length > 0){
+        document.getElementById("loader").style.display="none"
+    }
 
 
     const blogContainer = document.getElementById('blog-cont')

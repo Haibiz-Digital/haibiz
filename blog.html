@@ -142,6 +142,7 @@
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    min-height: 65vh;
   }
 
   .blog-cont a {
@@ -235,12 +236,25 @@
 
 
   }
+
+  /* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 4px solid lightblue;
+  border-right-color: #6c55f9;
+  animation: l2 1s infinite linear;
+}
+@keyframes l2 {to{transform: rotate(1turn)}}
 </style>
 
 <body>
 
   <!-- Back to top button -->
   <div class="back-to-top"></div>
+
+  
 
   <header>
     <nav class="navbar navbar-expand-lg navbar-light navbar-float">
@@ -291,6 +305,7 @@
       <div class="blog-cont" id="blog-cont">
 
         <!-- blog content comes here -->
+        <div class="loader" id="loader"></div>
 
       </div>
 
