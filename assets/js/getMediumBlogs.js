@@ -14,8 +14,10 @@ function extractImageUrl(description) {
     return null;
 }
 
+const api = 'https://proxy-server-j661.onrender.com/?link=https://medium.com/feed/@haibizdigital'
+
 async function getBlogs() {
-    const blogContent = (await (await fetch("https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@haibizdigital")).json()).items
+    const blogContent = (await (await fetch(api)).json()).items
     //console.log(blogContent)
 
     if(blogContent.length > 0){
@@ -28,11 +30,11 @@ async function getBlogs() {
 
 
         //console.log(value)
-        let dateString = value.pubDate;
+        let dateString = value.date_published;
         let date = new Date(dateString).getTime();
         readableDate = formatDate(date)
-        let imageUrl = extractImageUrl(value.description)
-        blogContainer.innerHTML += `  <a href=${value.link} target="_blank">
+        let imageUrl = extractImageUrl(value.content_html)
+        blogContainer.innerHTML += `  <a href=${value.url} target="_blank">
         <div class="image-card">
           <img src="${imageUrl}"
             alt="blog">
