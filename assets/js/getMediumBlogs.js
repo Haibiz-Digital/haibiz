@@ -1,7 +1,18 @@
-function formatDate(milliseconds) {
-    const date = new Date(milliseconds);
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('en-US', options);
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffTime = Math.abs(now - date);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  
+  if (diffDays < 30) {
+    return `${diffDays} days ago`;
+  } else if (diffDays < 365) {
+    const months = Math.floor(diffDays / 30);
+    return `${months} month${months > 1 ? 's' : ''} ago`;
+  } else {
+    const years = Math.floor(diffDays / 365);
+    return `${years} year${years > 1 ? 's' : ''} ago`;
+  }
 }
 
 function extractImageUrl(description) {
@@ -15,10 +26,11 @@ function extractImageUrl(description) {
 }
 
 const api = 'https://proxy-server-j661.onrender.com/?link=https://medium.com/feed/@haibizdigital'
+//const api = 'http://127.0.0.1:3000/?link=https://medium.com/feed/@haibizdigital'
 
 async function getBlogs() {
     const blogContent = (await (await fetch(api)).json()).items
-    //console.log(blogContent)
+    console.log(blogContent)
 
     if(blogContent.length > 0){
         document.getElementById("loader").style.display="none"
@@ -30,11 +42,11 @@ async function getBlogs() {
 
 
         //console.log(value)
-        let dateString = value.date_published;
+        let dateString = value.pubDate;
         let date = new Date(dateString).getTime();
         readableDate = formatDate(date)
-        let imageUrl = extractImageUrl(value.content_html)
-        blogContainer.innerHTML += `  <a href=${value.url} target="_blank">
+        let imageUrl = extractImageUrl(value["content:encoded"])
+        blogContainer.innerHTML += `  <a href=${value.guid} target="_blank">
         <div class="image-card">
           <img src="${imageUrl}"
             alt="blog">
